@@ -8,6 +8,7 @@ const config: SqlServerConnectionOptions = {
   password: 'sa',
   database: 'GMG_LIVE',
   synchronize: false,
+  entities: ['dist/**/*.entity{.ts,.js}'],
   extra: {
     trustServerCertificate: true,
   },

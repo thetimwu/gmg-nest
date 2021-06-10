@@ -10,7 +10,7 @@ export class EmployeesService {
     private employeesRepository: Repository<Employee>,
   ) {}
 
-  findAll(): Promise<Employee[]> {
-    return this.employeesRepository.find();
+  async findAll(): Promise<Employee[]> {
+    return await this.employeesRepository.find();
   }
 }
