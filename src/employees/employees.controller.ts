@@ -17,12 +17,14 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiQuery,
+  ApiTags,
 } from '@nestjs/swagger';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { Employee } from './employee.entity';
 import { EmployeesService } from './employees.service';
 
+@ApiTags('Employees')
 @Controller('employees')
 export class EmployeesController {
   constructor(private employeesService: EmployeesService) {}

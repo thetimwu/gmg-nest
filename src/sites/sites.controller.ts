@@ -15,9 +15,11 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 import { Site } from './entities/site.entity';
 
+@ApiTags('Site')
 @Controller('sites')
 export class SitesController {
   constructor(private readonly sitesService: SitesService) {}
