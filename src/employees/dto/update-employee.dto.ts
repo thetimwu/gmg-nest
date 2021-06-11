@@ -2,8 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateEmployeeDto {
   @ApiProperty()
-  id: number;
-  @ApiProperty()
   FirstName?: string;
   @ApiProperty()
   LastName?: string;

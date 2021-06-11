@@ -88,8 +88,11 @@ export class EmployeesController {
     description: 'Employee updated successfully',
   })
   @ApiBadRequestResponse({ description: 'Fail to update employee' })
-  @Patch()
-  updateEmployee(@Body() body: UpdateEmployeeDto) {
-    return this.employeesService.updateEmployee(body);
+  @Patch(':id')
+  updateEmployee(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() body: UpdateEmployeeDto,
+  ) {
+    return this.employeesService.updateEmployee(id, body);
   }
 }

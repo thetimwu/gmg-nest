@@ -61,15 +61,13 @@ export class EmployeesService {
     }
   }
 
-  async updateEmployee({ id, ...rest }: UpdateEmployeeDto) {
+  async updateEmployee(id: number, body: UpdateEmployeeDto) {
     const employee = this.employeesRepository.findOne(id);
     if (!employee) {
       throw new NotFoundException('Employee not found');
     }
 
-    const updatedEmployee = await this.employeesRepository.update(id, {
-      ...rest,
-    });
+    const updatedEmployee = await this.employeesRepository.update(id, body);
     return await this.employeesRepository.findOne(id);
   }
 }
