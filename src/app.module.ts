@@ -1,37 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { GMG_LIVE_CONNECTION, GMG_APP_CONNECTION } from './constants';
-import { Employee } from './gmgLive/employee/employee.entity';
+import config from '../ormconfig';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { EmployeesModule } from './employees/employees.module';
+import { SitesModule } from './sites/sites.module';
+import { CustomersModule } from './customers/customers.module';
 
-//entities: [__dirname + '/**/*.entity{.ts,.js}'],
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      name: GMG_LIVE_CONNECTION,
-      type: 'mssql',
-      host: 'localhost',
-      port: 1433,
-      username: 'sa',
-      password: 'sa',
-      database: 'GMG_LIVE',
-      synchronize: false,
-      logging: true,
-      entities: [Employee],
-    }),
-    // TypeOrmModule.forRoot({
-    //   name: GMG_APP_CONNECTION,
-    //   database: 'gmgAppDb',
-    //   type: 'mssql',
-    //   host: 'localhost',
-    //   port: 1433,
-    //   username: 'sa',
-    //   password: 'sa',
-    //   synchronize: false,
-    //   logging: true,
-    //   entities: [],
-    // }),
+    TypeOrmModule.forRoot({ ...config, autoLoadEntities: true }),
+    EmployeesModule,
+    SitesModule,
+    CustomersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
