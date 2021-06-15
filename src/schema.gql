@@ -1,0 +1,35 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Site {
+  SiteID: ID!
+  SiteName: String!
+  AddressLine1: String!
+  AddressLine2: String
+  City: String
+  PostalCode: String
+  ContactID: Int
+  CustomerID: Int
+  NoOfUnits: Int!
+  Status: Int
+  LiveSite: Boolean
+  MCD: Float
+  RetentionRate: Float
+  CappedRetentionValue: Float
+  RenderCappedRetentionValue: Float
+  CurrentRetentionValue: Float
+  Notes: String
+  Awarded: Boolean
+  User: String
+  Date: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  getAllSites: [Site!]!
+}
