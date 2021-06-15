@@ -17,9 +17,9 @@ export class SitesService {
   ) {}
 
   async create(createSiteDto: CreateSiteDto) {
-    const newSite = createSiteDto;
+    const newSite = await this.sitesRepository.create(createSiteDto);
     try {
-      return await this.sitesRepository.create(newSite);
+      return await this.sitesRepository.save(newSite);
     } catch (error) {
       throw new BadRequestException();
     }
@@ -45,16 +45,15 @@ export class SitesService {
 
   async update(id: number, updateSiteDto: UpdateSiteDto) {
     const site = await this.sitesRepository.findOneOrFail(id);
-
-    return await this.sitesRepository.update(id, updateSiteDto);
+    await this.sitesRepository.update(id, updateSiteDto);
+    return { ...site, ...updateSiteDto };
   }
 
-  async remove(id: number) {
+  remove(id: number) {
     try {
-      await this.sitesRepository.delete(id);
+      return this.sitesRepository.delete(id);
     } catch (error) {
       throw new BadRequestException(error);
     }
-    return;
   }
 }

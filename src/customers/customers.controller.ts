@@ -9,6 +9,13 @@ import { Customer } from './entities/customer.entity';
   model: {
     type: Customer,
   },
+  params: {
+    CustomerId: {
+      field: 'CustomerID',
+      type: 'number',
+      primary: true,
+    },
+  },
 })
 @ApiTags('Customer')
 @Controller('customers')

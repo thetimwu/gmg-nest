@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { ArgsType, Field, Int, ObjectType } from '@nestjs/graphql';
 
 export class CreateSiteDto {
   @ApiProperty()
