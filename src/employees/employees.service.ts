@@ -68,6 +68,7 @@ export class EmployeesService {
     }
 
     const updatedEmployee = await this.employeesRepository.update(id, body);
-    return await this.employeesRepository.findOne(id);
+    console.log(updatedEmployee);
+    return this.employeesRepository.findOne(id);
   }
 }

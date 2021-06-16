@@ -6,11 +6,8 @@ import {
   Int,
   Mutation,
 } from '@nestjs/graphql';
-import {
-  CreateSiteArgs,
-  UpdateSiteArgs,
-  DeleteResult,
-} from './dto/create-site.args';
+import { DeleteResult } from 'src/types';
+import { CreateSiteArgs, UpdateSiteArgs } from './dto/create-site.args';
 import { Site } from './entities/site.entity';
 import { SitesService } from './sites.service';
 

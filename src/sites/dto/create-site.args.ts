@@ -27,11 +27,3 @@ export class UpdateSiteArgs {
   @Field((type) => Int, { nullable: true })
   NoOfUnits?: number;
 }
-
-@ObjectType()
-export class DeleteResult {
-  @Field({ nullable: true })
-  isOk?: boolean;
-  @Field({ nullable: true })
-  error?: string;
-}
