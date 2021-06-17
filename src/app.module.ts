@@ -8,6 +8,8 @@ import { SitesModule } from './sites/sites.module';
 import { CustomersModule } from './customers/customers.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
+import { HouseTypesModule } from './house-types/house-types.module';
+import { CatRateModule } from './cat-rate/cat-rate.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { join } from 'path';
     EmployeesModule,
     SitesModule,
     CustomersModule,
+    HouseTypesModule,
+    CatRateModule,
   ],
   controllers: [AppController],
   providers: [AppService],

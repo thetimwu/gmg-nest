@@ -57,11 +57,23 @@ type Site {
   Date: DateTime
 }
 
+type CatRate {
+  RateID: Int!
+
+  """Category name"""
+  Category: String!
+
+  """Pay rate"""
+  Rate: Float!
+  UsedFor: String
+}
+
 type Query {
   getAllEmployee(options: GetEmployeeInput!): [Employee!]!
   getOneEmployee(id: Float!): Employee!
   getAllSites: [Site!]!
   getOneSite(id: Int!): Site!
+  catRate(id: Int!): CatRate!
 }
 
 input GetEmployeeInput {
@@ -76,6 +88,9 @@ type Mutation {
   createSite(newSite: CreateSiteArgs!): Site!
   updateSite(id: Int!, options: UpdateSiteArgs!): Site!
   deleteSite(id: Float!): DeleteResult!
+  createCatRate(createCatRateInput: CreateCatRateInput!): CatRate!
+  updateCatRate(updateCatRateInput: UpdateCatRateInput!): CatRate!
+  removeCatRate(id: Int!): CatRate!
 }
 
 input CreateEmployeeDto {
@@ -110,4 +125,15 @@ input UpdateSiteArgs {
   City: String
   CustomerID: Int
   NoOfUnits: Int
+}
+
+input CreateCatRateInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCatRateInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
