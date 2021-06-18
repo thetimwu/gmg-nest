@@ -1,5 +1,5 @@
 import { Field, Int, Float, ObjectType } from '@nestjs/graphql';
-import { IsBoolean, IsIn, IsInt, IsString } from 'class-validator';
+import { IsBoolean, IsInt, IsString, Max, Min } from 'class-validator';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -108,6 +108,9 @@ export class HouseType {
   Bands: number | null = null;
 
   @Field(() => Int)
+  @IsInt()
+  @Min(1)
+  @Max(46)
   @Column('int')
   Colour!: number;
 
