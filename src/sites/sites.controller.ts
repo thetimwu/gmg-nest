@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ValidationPipe,
 } from '@nestjs/common';
 import { SitesService } from './sites.service';
 import { CreateSiteDto } from './dto/create-site.dto';
@@ -15,6 +16,7 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { Site } from './entities/site.entity';
@@ -27,7 +29,8 @@ export class SitesController {
   @ApiCreatedResponse({ type: CreateSiteDto, description: 'Site created!' })
   @ApiBadRequestResponse()
   @Post()
-  create(@Body() createSiteDto: CreateSiteDto) {
+  @ApiOperation({ summary: 'Create a new Site' })
+  create(@Body(new ValidationPipe()) createSiteDto: CreateSiteDto) {
     return this.sitesService.create(createSiteDto);
   }
 
@@ -45,7 +48,11 @@ export class SitesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSiteDto: UpdateSiteDto) {
+  @ApiOperation({ summary: 'Update a Site' })
+  update(
+    @Param('id') id: string,
+    @Body(new ValidationPipe()) updateSiteDto: UpdateSiteDto,
+  ) {
     return this.sitesService.update(+id, updateSiteDto);
   }
 

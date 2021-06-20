@@ -1,0 +1,139 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Employee {
+  EmployeeID: ID!
+  FirstName: String!
+  LastName: String!
+  AddressLine1: String!
+  AddressLine2: String
+  City: String!
+  PostCode: String
+  DateOfBirth: DateTime
+  Tradesman: Boolean
+  JobID: Int!
+  NINumber: String!
+  Mobile: String
+  EmergContact: String
+  EmergPhone: String
+  Verified: Boolean
+  StartDate: DateTime
+  LeavingDate: DateTime
+  Current: Boolean
+  Notes: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeleteResult {
+  isOk: Boolean
+  error: String
+}
+
+type Site {
+  SiteID: ID!
+  SiteName: String!
+  AddressLine1: String!
+  AddressLine2: String
+  City: String
+  PostalCode: String
+  ContactID: Int
+  CustomerID: Int
+  NoOfUnits: Int!
+  Status: Int
+  LiveSite: Boolean
+  MCD: Float
+  RetentionRate: Float
+  CappedRetentionValue: Float
+  RenderCappedRetentionValue: Float
+  CurrentRetentionValue: Float
+  Notes: String
+  Awarded: Boolean
+  User: String
+  Date: DateTime
+}
+
+type CatRate {
+  RateID: Int!
+
+  """Category name"""
+  Category: String!
+
+  """Pay rate"""
+  Rate: Float!
+  UsedFor: String
+}
+
+type Query {
+  getAllEmployee(options: GetEmployeeInput!): [Employee!]!
+  getOneEmployee(id: Float!): Employee!
+  getAllSites: [Site!]!
+  getOneSite(id: Int!): Site!
+  catRate(id: Int!): CatRate!
+}
+
+input GetEmployeeInput {
+  firstName: String
+  lastName: String
+}
+
+type Mutation {
+  createEmployee(inputs: CreateEmployeeDto!): Employee!
+  updateEmployee(inputs: UpdateEmployeeDto!, id: Float!): Employee!
+  deleteEmployee(id: Float!): DeleteResult!
+  createSite(newSite: CreateSiteArgs!): Site!
+  updateSite(id: Int!, options: UpdateSiteArgs!): Site!
+  deleteSite(id: Float!): DeleteResult!
+  createCatRate(createCatRateInput: CreateCatRateInput!): CatRate!
+  updateCatRate(updateCatRateInput: UpdateCatRateInput!): CatRate!
+  removeCatRate(id: Int!): CatRate!
+}
+
+input CreateEmployeeDto {
+  FirstName: String!
+  LastName: String!
+  AddressLine1: String!
+  City: String!
+  JobID: Float!
+  NINumber: String!
+}
+
+input UpdateEmployeeDto {
+  FirstName: String
+  LastName: String
+  AddressLine1: String
+  City: String
+  JobID: Float
+  NINumber: String
+}
+
+input CreateSiteArgs {
+  SiteName: String!
+  AddressLine1: String!
+  City: String!
+  CustomerID: Int!
+  NoOfUnits: Int!
+}
+
+input UpdateSiteArgs {
+  SiteName: String
+  AddressLine1: String
+  City: String
+  CustomerID: Int
+  NoOfUnits: Int
+}
+
+input CreateCatRateInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCatRateInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}

@@ -10,16 +10,23 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiOperation,
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
+import { JoiValidationPipe } from 'src/pipes/JoiValidationPipe';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
+import {
+  createEmployeeSchema,
+  updateEmployeeSchema,
+} from './dto/employee.schema';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { Employee } from './employee.entity';
 import { EmployeesService } from './employees.service';
@@ -73,7 +80,9 @@ export class EmployeesController {
     description: 'Create employee successfully',
   })
   @ApiBadRequestResponse({ description: 'Employee not created' })
+  @ApiOperation({ summary: 'Create a new Employee' })
   @Post()
+  @UsePipes(new JoiValidationPipe(createEmployeeSchema))
   addEmployee(@Body() body: CreateEmployeeDto) {
     return this.employeesService.createEmployee(body);
   }
@@ -90,6 +99,8 @@ export class EmployeesController {
     description: 'Employee updated successfully',
   })
   @ApiBadRequestResponse({ description: 'Fail to update employee' })
+  @ApiOperation({ summary: 'Update Employee detail' })
+  @UsePipes(new JoiValidationPipe(updateEmployeeSchema))
   @Patch(':id')
   updateEmployee(
     @Param('id', ParseIntPipe) id: number,
