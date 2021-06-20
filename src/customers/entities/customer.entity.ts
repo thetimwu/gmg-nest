@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Field, Float, ID, Int, ObjectType } from '@nestjs/graphql';
 import {
   Entity,

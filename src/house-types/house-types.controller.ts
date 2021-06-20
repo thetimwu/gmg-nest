@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UsePipes,
+  UseInterceptors,
 } from '@nestjs/common';
 import { HouseTypesService } from './house-types.service';
 import { CreateHouseTypeDto } from './dto/create-house-type.dto';
@@ -14,9 +15,11 @@ import { UpdateHouseTypeDto } from './dto/update-house-type.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { HouseTypeByIdPipe } from '../pipes/HouseTypeByIdPipe';
 import { HouseType } from './entities/house-type.entity';
+import { LoggingInterceptor } from 'src/interceptor/logging.interceptor';
 
 @ApiTags('House-Type')
 @Controller('house-types')
+@UseInterceptors(new LoggingInterceptor())
 export class HouseTypesController {
   constructor(private readonly houseTypesService: HouseTypesService) {}
 

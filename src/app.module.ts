@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import config from '../ormconfig';
@@ -10,6 +15,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { HouseTypesModule } from './house-types/house-types.module';
 import { CatRateModule } from './cat-rate/cat-rate.module';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 
 @Module({
   imports: [
@@ -26,4 +32,10 @@ import { CatRateModule } from './cat-rate/cat-rate.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes({ path: 'cat-rate', method: RequestMethod.GET });
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import {
   ArgumentMetadata,
   BadRequestException,
@@ -22,6 +23,7 @@ export class ValidationPip implements PipeTransform<any> {
     return value;
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   private toValidate(metatype: Function): boolean {
     const types: Function[] = [String, Boolean, Number, Array, Object];
     return !types.includes(metatype);
