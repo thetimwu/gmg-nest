@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HouseType } from './entities/house-type.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([HouseType])],
+  imports: [TypeOrmModule.forFeature([HouseType], 'gmgLiveDb')],
   controllers: [HouseTypesController],
   providers: [HouseTypesService],
   exports: [HouseTypesService],

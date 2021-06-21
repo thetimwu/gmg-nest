@@ -3,11 +3,13 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { TimeoutInterceptor } from './interceptor/Timeout.interceptor';
+import { NotFoundInterceptor } from './interceptor/NotFound.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TimeoutInterceptor());
+  app.useGlobalInterceptors(new NotFoundInterceptor());
 
   const config = new DocumentBuilder()
     .setTitle('gmg-nest')

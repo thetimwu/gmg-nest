@@ -6,7 +6,7 @@ import { Customer } from './entities/customer.entity';
 
 @Injectable()
 export class CustomersService extends TypeOrmCrudService<Customer> {
-  constructor(@InjectRepository(Customer) repo) {
+  constructor(@InjectRepository(Customer, 'gmgLiveDb') repo) {
     super(repo);
   }
 }

@@ -6,7 +6,7 @@ import { Site } from './entities/site.entity';
 import { SitesResolver } from './sites.resolver';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Site])],
+  imports: [TypeOrmModule.forFeature([Site], 'gmgLiveDb')],
   controllers: [SitesController],
   providers: [SitesService, SitesResolver],
 })

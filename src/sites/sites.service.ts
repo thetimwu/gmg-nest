@@ -13,7 +13,8 @@ import { Site } from './entities/site.entity';
 @Injectable()
 export class SitesService {
   constructor(
-    @InjectRepository(Site) private sitesRepository: Repository<Site>,
+    @InjectRepository(Site, 'gmgLiveDb')
+    private sitesRepository: Repository<Site>,
   ) {}
 
   async create(createSiteDto: CreateSiteDto) {

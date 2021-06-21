@@ -12,7 +12,7 @@ import { HouseType } from './entities/house-type.entity';
 @Injectable()
 export class HouseTypesService {
   constructor(
-    @InjectRepository(HouseType)
+    @InjectRepository(HouseType, 'gmgLiveDb')
     private houseTypeRepository: Repository<HouseType>,
   ) {}
 

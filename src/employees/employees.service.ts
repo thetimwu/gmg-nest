@@ -12,7 +12,7 @@ import { Employee } from './employee.entity';
 @Injectable()
 export class EmployeesService {
   constructor(
-    @InjectRepository(Employee)
+    @InjectRepository(Employee, 'gmgLiveDb')
     private employeesRepository: Repository<Employee>,
   ) {}
 

@@ -2,6 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Gmguser {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  usertype: String
+  email: String
+  password: String!
+  username: String!
+  emailVerified: Boolean
+  verificationToken: String
+}
+
 type Employee {
   EmployeeID: ID!
   FirstName: String!
@@ -29,9 +41,15 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type DeleteResult {
-  isOk: Boolean
-  error: String
+type CatRate {
+  RateID: Int!
+
+  """Category name"""
+  Category: String!
+
+  """Pay rate"""
+  Rate: Float!
+  UsedFor: String
 }
 
 type Site {
@@ -57,15 +75,9 @@ type Site {
   Date: DateTime
 }
 
-type CatRate {
-  RateID: Int!
-
-  """Category name"""
-  Category: String!
-
-  """Pay rate"""
-  Rate: Float!
-  UsedFor: String
+type DeleteResult {
+  isOk: Boolean
+  error: String
 }
 
 type Query {
@@ -74,6 +86,8 @@ type Query {
   getAllSites: [Site!]!
   getOneSite(id: Int!): Site!
   catRate(id: Int!): CatRate!
+  getAllGMGUser: [Gmguser!]!
+  getOneGMGUser(id: Int!): Gmguser!
 }
 
 input GetEmployeeInput {
@@ -91,6 +105,9 @@ type Mutation {
   createCatRate(createCatRateInput: CreateCatRateInput!): CatRate!
   updateCatRate(updateCatRateInput: UpdateCatRateInput!): CatRate!
   removeCatRate(id: Int!): CatRate!
+  createGmguser(createGmguserInput: CreateGmguserInput!): Gmguser!
+  updateGmguser(updateGmguserInput: UpdateGmguserInput!): Gmguser!
+  removeGmguser(id: Int!): Gmguser!
 }
 
 input CreateEmployeeDto {
@@ -133,6 +150,17 @@ input CreateCatRateInput {
 }
 
 input UpdateCatRateInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateGmguserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateGmguserInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

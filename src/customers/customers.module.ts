@@ -6,7 +6,7 @@ import { Customer } from './entities/customer.entity';
 import { CustomersResolver } from './customers.resolver';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Customer])],
+  imports: [TypeOrmModule.forFeature([Customer], 'gmgLiveDb')],
   controllers: [CustomersController],
   providers: [CustomersService, CustomersResolver],
   exports: [CustomersService],

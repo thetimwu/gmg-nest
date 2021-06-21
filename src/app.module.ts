@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import config from '../ormconfig';
+import config, { config2 } from '../ormconfig';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EmployeesModule } from './employees/employees.module';
 import { SitesModule } from './sites/sites.module';
@@ -16,6 +16,7 @@ import { join } from 'path';
 import { HouseTypesModule } from './house-types/house-types.module';
 import { CatRateModule } from './cat-rate/cat-rate.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
+import { GmguserModule } from './gmguser/gmguser.module';
 
 @Module({
   imports: [
@@ -23,11 +24,13 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     TypeOrmModule.forRoot({ ...config, autoLoadEntities: true }),
+    TypeOrmModule.forRoot({ ...config2, autoLoadEntities: true }),
     EmployeesModule,
     SitesModule,
     CustomersModule,
     HouseTypesModule,
     CatRateModule,
+    GmguserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
