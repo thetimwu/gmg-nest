@@ -2,18 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Gmguser {
-  id: Int!
-  firstName: String!
-  lastName: String!
-  usertype: String
-  email: String
-  password: String!
-  username: String!
-  emailVerified: Boolean
-  verificationToken: String
-}
-
 type Employee {
   EmployeeID: ID!
   FirstName: String!
@@ -40,6 +28,18 @@ type Employee {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type Gmguser {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  usertype: String
+  email: String
+  password: String!
+  username: String!
+  emailVerified: Boolean
+  verificationToken: String
+}
 
 type CatRate {
   RateID: Int!

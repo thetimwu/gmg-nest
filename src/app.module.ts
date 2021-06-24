@@ -17,9 +17,15 @@ import { HouseTypesModule } from './house-types/house-types.module';
 import { CatRateModule } from './cat-rate/cat-rate.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { GmguserModule } from './gmguser/gmguser.module';
+import { EventsGateway } from './events/events.gateway';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'static'),
+    }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
@@ -31,9 +37,10 @@ import { GmguserModule } from './gmguser/gmguser.module';
     HouseTypesModule,
     CatRateModule,
     GmguserModule,
+    EventsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, EventsGateway],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

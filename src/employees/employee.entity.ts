@@ -11,9 +11,10 @@ import {
   OneToOne,
   ManyToOne,
 } from 'typeorm';
+import { Gmguser } from 'src/gmguser/entities/gmguser.entity';
 
 @ObjectType()
-@Entity('tbl_Employees')
+@Entity('tbl_Employees', { database: 'GMG_LIVE' })
 export class Employee extends BaseEntity {
   @Field((type) => ID)
   @ApiProperty()
@@ -107,4 +108,9 @@ export class Employee extends BaseEntity {
   @ApiProperty()
   @Column({ type: 'nvarchar', length: 500 })
   Notes: string | null = null;
+
+  // @Field(() => Gmguser, { nullable: true })
+  // @OneToOne(() => Gmguser, (gmguser) => gmguser.employee)
+  // @JoinColumn({ name: 'EmployeeID', referencedColumnName: 'id' })
+  // gmguser: Gmguser | null = null;
 }

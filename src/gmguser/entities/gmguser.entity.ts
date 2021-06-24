@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Employee } from 'src/employees/employee.entity';
 import {
   Entity,
   PrimaryColumn,
@@ -10,7 +11,7 @@ import {
 } from 'typeorm';
 
 @ObjectType()
-@Entity('GMGUser')
+@Entity('GMGUser', { database: 'gmgAppDb' })
 export class Gmguser extends BaseEntity {
   @Field(() => Int)
   @PrimaryColumn({ type: 'int', insert: true })
@@ -47,4 +48,9 @@ export class Gmguser extends BaseEntity {
   @Field(() => String, { nullable: true })
   @Column({ type: 'nvarchar', length: 255 })
   verificationToken: string | null = null;
+
+  // @Field(() => Employee)
+  // @OneToOne(() => Employee, (employee) => employee.gmguser)
+  // @JoinColumn({ name: 'id', referencedColumnName: 'EmployeeID' })
+  // employee: Employee;
 }
