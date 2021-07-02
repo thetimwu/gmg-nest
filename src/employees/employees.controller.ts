@@ -21,7 +21,7 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { JoiValidationPipe } from 'src/pipes/JoiValidationPipe';
+import { JoiValidationPipe } from '../pipes/JoiValidationPipe';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import {
   createEmployeeSchema,
