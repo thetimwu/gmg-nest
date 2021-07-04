@@ -95,7 +95,6 @@ describe('EmployeesController', () => {
 
   // async testing
   it('should get all employees', () => {
-    console.log('mememe...', controller.findAll());
     return controller.findAll().then((data) => {
       // expect(data).toEqual(mockEmployees);
       expect(data.length).toBe(2);
